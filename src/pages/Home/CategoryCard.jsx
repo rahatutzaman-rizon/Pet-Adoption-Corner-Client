@@ -10,6 +10,9 @@ const CategoryCard = ({category}) => {
           
   
   <div className="px-6 py-4">
+  <div>
+    <img src="https://i.ibb.co/61Dp6C8/images.jpg" alt="" />
+  </div>
     <div className="font-bold text-xl mb-2">{category}</div>
   </div>
           </Link>

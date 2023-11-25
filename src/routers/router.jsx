@@ -18,6 +18,13 @@ import Specific from "../pages/Home/Specific/Specific";
 import Moredetails from "../pages/Home/Specific/Moredetails";
 import BorrowBook from "../pages/Home/Specific/BorrowBook";
 import MyDonations from "../Dashboard/MyDonations";
+import PetListing from "../Pet/PetListing";
+import AddPet from "../Dashboard/AddPet";
+import MyPet from "../Dashboard/PetBoard/MyPet";
+import AdoptionRequest from "../Dashboard/AdoptionRequest";
+import MyDonationsCampign from "../Dashboard/MyDonationsCampign";
+import CreateDonationsCampign from "../Dashboard/CreateDonationsCampign";
+import MyDonation from "../Dashboard/PetBoard/MyDonation";
 
 
 const router = createBrowserRouter([
@@ -29,8 +36,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader:()=>fetch('https://library-management-server-phi.vercel.app/all-books'),
+        loader:()=>fetch('http://localhost:5000/pet-listing'),
       },
+      {
+        path: "/petlisting",
+        element: <PetListing></PetListing>,
+        loader:()=>fetch('http://localhost:5000/pet-listing'),
+
+      }
+      ,
       {
         path: "/all-book",
         element:<PrivateRoute><Shop /></PrivateRoute> ,
@@ -57,6 +71,15 @@ const router = createBrowserRouter([
       { path: "/admin/dashboard", element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>},
       { path: "/admin/dashboard/mydonation", element: <MyDonations></MyDonations> },
       { path: "/admin/dashboard/manage", element: <ManageBooks /> },
+      
+      { path: "/admin/dashboard/add-pet", element: <AddPet></AddPet> },
+
+      { path: "/admin/dashboard/my-pet", element: <MyPet></MyPet> },
+      { path: "/admin/dashboard/adoption", element: <AdoptionRequest></AdoptionRequest>  },
+      { path: "/admin/dashboard/my-donation-campign", element: <MyDonationsCampign></MyDonationsCampign> },
+      { path: "/admin/dashboard/create-donation", element:<CreateDonationsCampign></CreateDonationsCampign> },
+      { path: "/admin/dashboard/my-donation", element: <MyDonation></MyDonation> },
+
       { path: "/admin/dashboard/edit-books/:id", element: <EditBooks />,
       loader: ({ params }) => fetch(`https://library-management-server-phi.vercel.app/book/${params.id}`)
     },

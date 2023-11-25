@@ -48,6 +48,14 @@ const SideBar = () => {
               </p>
             </Sidebar.Item>
             
+            <Sidebar.Item
+              href="/admin/dashboard/add-pet"
+              icon={HiInbox}
+            >
+              <p>
+               Add pet
+              </p>
+            </Sidebar.Item>
             
            
             <Sidebar.Item

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 // import icons from react icons
-import {  FaMap } from "react-icons/fa6";
+import {  FaDove } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import sun from "./light.png";
 import moon from "./dark.png";
@@ -66,9 +66,8 @@ console.log(user)
         { link: "Home", path: "/" },
         
         { link: "All Book", path: "/all-book" },
-        { link: "Add Book", path: "/add-book" },
-        { link: "Borrow Book", path: "/borrow" },
-        { link: "Dashbord", path: "/admin/dashboard" },
+        { link: "PetListing", path: "/petlisting" },
+ 
         { link: "Login", path: "/login" },
     ];
     return (
@@ -76,7 +75,7 @@ console.log(user)
             <nav className={`py-4 lg:px-4 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-teal-300" : ""
                 }`}>
                 <div className="flex justify-between items-center text-base gap-2">
-                    <Link to="/" className="text-3xl font-bold text-purple-500  flex items-center "><FaMap className="inline-block"/>বই বাজার</Link>
+                    <Link to="/" className="text-3xl font-bold text-purple-500  flex items-center "><FaDove className="inline-block"/>Pet Corner</Link>
 
                     <button className="btn btn-square btn-ghost">
           <label className="swap swap-rotate w-12 h-12">
