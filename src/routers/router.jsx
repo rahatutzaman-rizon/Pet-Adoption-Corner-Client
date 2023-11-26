@@ -25,6 +25,7 @@ import AdoptionRequest from "../Dashboard/AdoptionRequest";
 import MyDonationsCampign from "../Dashboard/MyDonationsCampign";
 import CreateDonationsCampign from "../Dashboard/CreateDonationsCampign";
 import MyDonation from "../Dashboard/PetBoard/MyDonation";
+import AdmitPet from "../Pet/AdmitPet";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
         element:<PrivateRoute><BorrowBook></BorrowBook></PrivateRoute>,
         loader:()=>fetch('https://library-management-server-phi.vercel.app/borrow'),
       },
+      {
+        path:"/adopt",
+        element:<AdmitPet></AdmitPet>,
+        loader:()=>fetch('http://localhost:5000/adopt'),
+      },
     
     ]
   },
@@ -94,8 +100,8 @@ const router = createBrowserRouter([
 
   {
     path: "/moredetail/:id",
-    element:<PrivateRoute><Moredetails></Moredetails></PrivateRoute>,
-    loader:({params})=> fetch(`https://library-management-server-phi.vercel.app/moredetail/${params.id}`)  
+    element:<Moredetails></Moredetails>,
+    loader:({params})=> fetch(`http://localhost:5000/moredetail/${params.id}`)  
   },
 
   {

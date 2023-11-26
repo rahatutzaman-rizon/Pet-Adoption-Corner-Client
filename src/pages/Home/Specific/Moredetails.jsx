@@ -1,31 +1,45 @@
-import { Link, useLoaderData } from "react-router-dom";
+import {  Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import Navbar from "../../shared/Navbar";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Moredetails = () => {
+  const {user}=useContext(AuthContext);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   const item=useLoaderData();
     console.log(item);
    
    
-   const {name,author,image,rating,category,desc}=item;
+   const {name,picture,age,location,category,long_description,short_description}=item;
 
    const handleUpdateProduct = event => {
     event.preventDefault();
 
     const form = event.target;
 
-    const bname = form.bname.value;
-    const email = form.price.email;
-    const date = form.brand.date;
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const email = form.email.value;
+    const address = form.address.value;
     
+  const updateproductitem = { name,email,phone,address }
+  
 
-    const updateproductitem = { name,bname,category,date,email }
+  //   console.log(updateproductitem);
 
-    console.log(updateproductitem);
-
-    // send data to the server
-    fetch("https://library-management-server-phi.vercel.app/borrow", {
+    ///send data to the server
+    fetch("http://localhost:5000/adopt", {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'
@@ -50,74 +64,129 @@ const Moredetails = () => {
 
   return (
     <div>
-    <Navbar  className="mb-8"></Navbar>
+    <Navbar  className=""></Navbar>
      <div>
-     <div className="max-w-sm mx-auto bg-gradient-to-r from-blue-500 to-purple-500 rounded-md overflow-hidden shadow-lg mt-24">
-      <img className="w-full h-40 object-cover" src={image} alt={name} />
+     <div className="max-w-3xl mx-auto bg-gradient-to-r from-teal-400 to-blue-300 rounded-md overflow-hidden shadow-lg mt-24  ">
+      <img className="w-72 h-64  ml-48 rounded-lg  my-8 justify-items-center  object-cover" src={picture} alt={name} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-white">{name}</div>
-        <p className="text-gray-200 text-base mb-2">by {author}</p>
+        <p className="text-gray-200 text-base mb-2">AGE:  {age}</p>
         <div className="border-t border-b border-gray-300 my-2"></div>
         <div className="mb-2">
-          <p className="text-gray-200 text-base">Rating: {rating}</p>
+          <p className="text-gray-200 text-base">Location {location}</p>
+         
           <p className="text-gray-200 text-base">Category: {category}</p>
+          <p className="text-gray-200 text-base">Phone: 01771276400</p>
+        </div>
+        <div className="mb-4 border-t border-b border-gray-300 " >
+          <p className=" text-gray-600 font-bold mb-1 text-xl">Short Description:</p>
+          <p className="text-gray-600">{short_description}</p>
+        </div>
+        <div className="mb-4">
+          <p className="text-gray-600 font-bold mb-1 text-xl">Long Description:</p>
+          <p className="text-gray-600">{long_description}</p>
         </div>
         <div className="border-t border-b border-gray-300 my-2"></div>
-        <p className="text-gray-200 text-base">{desc}</p>
+        <button
+          className="mt-4 mb-6 ml-54 bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600"
+          onClick={openModal}
+        >
+          Adopted
+        </button>
       </div>
     </div>
+   
+        
      </div> 
 
-     <div>
-{/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="btn" onClick={()=>document.getElementById('my_modal_5').showModal()}>open modal</button>
-<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-  <div className="modal-box">
-    <h3 className="font-bold text-lg">Boorrow the book</h3>
-    <p className="py-4"></p>
-    <div className="modal-action">
-      
-        {/* if there is a button in form, it will close the modal */}
-        <form onSubmit={handleUpdateProduct}>
-            {/* form name and quantity row */}
-            <div className="md:flex mb-8">
-                <div className="form-control md:w-1/2">
-                    <label className="label">
-                        <span className="label-text">Book Name Name</span>
-                    </label>
-                    <label className="input-group">
-                        <input type="text" name="bname" placeholder="Name" className="input input-bordered w-full" />
-                    </label>
-                </div>
-                <div className="form-control md:w-1/2 ml-4">
-                    <label className="label">
-                        <span className="label-text">Email</span>
-                    </label>
-                    <label className="input-group">
-                        <input type="email" name="email" placeholder="price" className="input input-bordered w-full" />
-                    </label>
-                </div>
+    
+    {showModal && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center mt-12">
+  <div className="bg-white p-8 w-96 rounded-md mt-18">
+   
+    <form onSubmit={handleUpdateProduct}>
+      <div className="mb-2 mt-12">
+        <label className="label">
+          <span className="label-text">User Name:</span>
+        </label>
+        <label className="input-group">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={user.displayName}
+            className="input input-bordered w-full"
+          />
+        </label>
+      </div>
 
-                <div className="form-control md:w-1/2 ml-4">
-                    <label className="label">
-                        <span className="label-text">date</span>
-                    </label>
-                    <label className="input-group">
-                        <input type="date" name="price"  placeholder="price" className="input input-bordered w-full" />
-                    </label>
-                </div>
-            </div>
+      <div className="mb-2">
+        <label className="label">
+          <span className="label-text">Email</span>
+        </label>
+        <label className="input-group">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={user.email}
+            className="input input-bordered w-full"
+          />
+        </label>
+      </div>
 
-           <Link to="/borrow"><input type="submit" value="submit to borrow" className="btn btn-block" />
-        </Link> 
-       
-      </form>
-       <button className="btn">Close</button>
-    </div>
+      <div className="mb-2">
+        <label className="label">
+          <span className="label-text">Address</span>
+        </label>
+        <label className="input-group">
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            className="input input-bordered w-full"
+          />
+        </label>
+      </div>
+
+      <div className="mb-2">
+        <label className="label">
+          <span className="label-text">Phone Number</span>
+        </label>
+        <label className="input-group">
+          <input
+            type="number"
+            name="phone"
+            placeholder="Phone Number"
+            className="input input-bordered w-full"
+          />
+        </label>
+      </div>
+
+      <div className="">
+        <Link to="/adopt">
+          <input
+            type="submit"
+            value="Submit to Borrow"
+            className="btn btn-block bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600"
+          />
+        </Link>
+      </div>
+    </form>
+
+    <button
+      className="bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 mb-12"
+      onClick={closeModal}
+    >
+      Close
+    </button>
+    
   </div>
-</dialog>
-     </div>
+</div>
+
+      )}
     </div>
+    
     
   );
 };
