@@ -4,99 +4,88 @@ import Navbar from "../../shared/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
-const Moredetails = () => {
-  const {user}=useContext(AuthContext);
+const Moredetail2 = () => {
+    const {user}=useContext(AuthContext);
 
-  const navigate=useNavigate();
-
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  const item=useLoaderData();
-    console.log(item);
-   
-   
-   const {name,picture,age,location,category,long_description,short_description}=item;
-
-   const handleUpdateProduct = event => {
-    event.preventDefault();
-
-    const form = event.target;
-
-    const name = form.name.value;
-    const petname = form.petname.value;
-    const phone = form.phone.value;
-    const email = form.email.value;
-    const address = form.address.value;
-    
-  const updateproductitem = { name,email,phone,address,petname }
+    const navigate=useNavigate();
   
-
-    console.log(updateproductitem);
-
-    //send data to the server
-    fetch("http://localhost:5000/adopt", {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(updateproductitem)
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId){
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Pet adopt Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
-
-                  navigate('/adopt')
-            }
-        })
-}
-
-
-
-  return (
-    <div>
+    const [showModal, setShowModal] = useState(false);
+  
+    const openModal = () => {
+      setShowModal(true);
+    };
+  
+    const closeModal = () => {
+      setShowModal(false);
+    };
+  
+    const item=useLoaderData();
+      console.log(item);
+     
+     
+     const {name,picture}=item;
+  
+     const handleUpdateProduct = event => {
+      event.preventDefault();
+  
+      const form = event.target;
+  
+      const name = form.name.value;
+      const petname = form.petname.value;
+      const phone = form.phone.value;
+      const email = form.email.value;
+      const address = form.address.value;
+      
+    const updateproductitem = { name,email,phone,address,petname }
+    
+  
+      console.log(updateproductitem);
+  
+      //send data to the server
+      fetch("http://localhost:5000/adopt", {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(updateproductitem)
+      })
+          .then(res => res.json())
+          .then(data => {
+              console.log(data);
+              if(data.insertedId){
+                  Swal.fire({
+                      title: 'Success!',
+                      text: 'Pet adopt Successfully',
+                      icon: 'success',
+                      confirmButtonText: 'Cool'
+                    })
+  
+                    navigate('/')
+              }
+          })
+  }
+  
+    return (
+        <div>
     <Navbar  className=""></Navbar>
      <div>
      <div className="max-w-3xl mx-auto bg-gradient-to-r from-teal-400 to-blue-300 rounded-md overflow-hidden shadow-lg mt-24  ">
-      <img className="w-72 h-64  ml-48 rounded-lg  my-8 justify-items-center  object-cover" src={picture} alt={name} />
+     
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2 text-white">{name}</div>
-        <p className="text-gray-200 text-base mb-2">AGE:  {age}</p>
-        <div className="border-t border-b border-gray-300 my-2"></div>
-        <div className="mb-2">
-          <p className="text-gray-200 text-base">Location {location}</p>
-         
-          <p className="text-gray-200 text-base">Category: {category}</p>
-          <p className="text-gray-200 text-base">Phone: 01771276400</p>
-        </div>
-        <div className="mb-4 border-t border-b border-gray-300 " >
-          <p className=" text-gray-600 font-bold mb-1 text-xl">Short Description:</p>
-          <p className="text-gray-600">{short_description}</p>
-        </div>
-        <div className="mb-4">
-          <p className="text-gray-600 font-bold mb-1 text-xl">Long Description:</p>
-          <p className="text-gray-600">{long_description}</p>
-        </div>
+      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-md shadow-md">
+      <img src={picture} alt={name} className="w-full h-54 object-cover mb-4 rounded-md" />
+      <h2 className="text-lg font-semibold mb-2 text-white">{name}</h2>
+      <p className="text-gray-200 mb-2"> Bkash Number: 016776263</p>
+      <p className="text-gray-200 mb-2">Donation details: Donations play a crucial role in addressing various societal and global challenges, providing support to individuals, communities, and organizations in need. The importance of donations extends far beyond the act of giving money or resources; it represents a powerful force for positive change</p>
+      
+    </div>
+        
         <div className="border-t border-b border-gray-300 my-2"></div>
         <button
-          className="mt-4 mb-6 ml-54 bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600"
+          className="mt-4 mb-6 ml-54 bg-pink-500 text-white rounded-md p-2 hover:bg-blue-600"
           onClick={openModal}
         >
-          Adopted
+         Donated
         </button>
       </div>
     </div>
@@ -205,9 +194,9 @@ const Moredetails = () => {
 
       )}
     </div>
-    
-    
-  );
+       
+       
+    );
 };
 
-export default Moredetails;
+export default Moredetail2;

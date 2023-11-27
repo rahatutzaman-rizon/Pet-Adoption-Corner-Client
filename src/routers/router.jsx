@@ -26,6 +26,8 @@ import MyDonationsCampign from "../Dashboard/MyDonationsCampign";
 import CreateDonationsCampign from "../Dashboard/CreateDonationsCampign";
 import MyDonation from "../Dashboard/PetBoard/MyDonation";
 import AdmitPet from "../Pet/AdmitPet";
+import DonationCampign from "../Pet/DonationCampign";
+import Moredetail2 from "../pages/Home/Specific/Moredetail2";
 
 
 const router = createBrowserRouter([
@@ -67,6 +69,12 @@ const router = createBrowserRouter([
         element:<AdmitPet></AdmitPet>,
         loader:()=>fetch('http://localhost:5000/adopt'),
       },
+
+      {
+        path:"/donation-campign",
+        element:<DonationCampign></DonationCampign>,
+        loader:()=>fetch('http://localhost:5000/pet-listing'),
+      },
     
     ]
   },
@@ -80,7 +88,8 @@ const router = createBrowserRouter([
       
       { path: "/admin/dashboard/add-pet", element: <AddPet></AddPet> },
 
-      { path: "/admin/dashboard/my-pet", element: <MyPet></MyPet> },
+      { path: "/admin/dashboard/my-pet", element: <MyPet></MyPet>,
+      loader:()=> fetch('http://localhost:5000/add-pet'), },
       { path: "/admin/dashboard/adoption", element: <AdoptionRequest></AdoptionRequest>  },
       { path: "/admin/dashboard/my-donation-campign", element: <MyDonationsCampign></MyDonationsCampign> },
       { path: "/admin/dashboard/create-donation", element:<CreateDonationsCampign></CreateDonationsCampign> },
@@ -102,6 +111,11 @@ const router = createBrowserRouter([
     path: "/moredetail/:id",
     element:<Moredetails></Moredetails>,
     loader:({params})=> fetch(`http://localhost:5000/moredetail/${params.id}`)  
+  },
+  {
+    path: "/moredetail2/:id",
+    element:<Moredetail2></Moredetail2>,
+    loader:({params})=> fetch(`http://localhost:5000/moredetail2/${params.id}`)  
   },
 
   {

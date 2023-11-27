@@ -4,16 +4,17 @@ import { Button, Label, Select, TextInput, Textarea } from 'flowbite-react';
 import Swal from 'sweetalert2';
 
 const UploadBook = () => {
-  const bookCategories = [
-    "programming",
-    "electronics",
-    "software",
-    "networking",
+  const Categories = [
+    "fish",
+    "bird",
+    "dog",
+    "cat"
+
   ];
 
 
   const [selectedBookCategory, setSelectedBookCategory] = useState(
-    bookCategories[0]
+    Categories[0]
   );
 
   const handleChangeSelectedValue = (event) => {
@@ -26,21 +27,17 @@ const UploadBook = () => {
     const form = event.target;
 
     const name = form.name.value;
-    const author = form.author.value;
-    const image = form.imageURL.value;
-    const category = form.categoryName.value;
-    const bookDescription = form.bookDescription.value;
-    const rating = form.rating.value;
-    const quantity = form.quantity.value;
-
+    const age=form.age.value;
+    const location=form.location.value;
+    const short=form.short.value;
+    const long=form.long.value;
+ 
+    const category = form.category.value;
+ 
+  
     const bookObj = {
       name,
-      author,
-      image,
-      category,
-      bookDescription,
-      rating,
-      quantity,
+      age,location,category,short,long
     };
     // console.log(dataObj)
     fetch("https://library-management-server-phi.vercel.app/upload-book", {
@@ -88,62 +85,66 @@ const UploadBook = () => {
             />
           </div>
 
-          {/* author name */}
+        
           <div className='lg:w-1/2'>
             <div className="mb-2 block">
               <Label
-                htmlFor="author"
-                value="Author Name"
+                htmlFor="age"
+                value="age"
               />
             </div>
             <TextInput
               id="author"
-              placeholder="Author"
+              placeholder="age"
               required
               type="text"
-              name='author'
+              name='age'
               className='w-full'
             />
           </div>
 
         </div>
-
-        {/* 2nd Row */}
-        <div className='flex gap-8'>
-          {/* book url */}
-          <div className='lg:w-1/2'>
+ <br></br>
+        <div className='lg:w-1/2'>
             <div className="mb-2 block">
               <Label
-                htmlFor="image"
-                value="image"
+                htmlFor="location"
+                value="location"
               />
             </div>
             <TextInput
-              id="image"
-              placeholder="Image URL"
+              id="location"
+              placeholder="location"
               required
               type="text"
-              name='image'
+              name='location'
               className='w-full'
             />
           </div>
 
+        
+
+
+
+        {/* 2nd Row */}
+        <div className='flex gap-8'>
+          
           {/* book category */}
           <div className='lg:w-1/2'>
             <div className="mb-2 block">
               <Label
                 htmlFor="inputState"
-                value="Book Category"
+                value=" Category"
               />
             </div>
             <Select
               id="inputState"
-              name="categoryName"
+              name="category"
               className="w-full rounded"
               value={selectedBookCategory}
               onChange={handleChangeSelectedValue}
             >
-              {bookCategories.map((option) => (
+              {Categories.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
@@ -158,16 +159,16 @@ const UploadBook = () => {
         <div className=''>
           <div className="mb-2 block">
             <Label
-              htmlFor="quantity of the book"
-              value="quantity of the book"
+              htmlFor="short"
+              value="short"
             />
           </div>
           <Textarea
-            id="quantity"
-            placeholder="quantity of the book"
+            id="short"
+            placeholder="short"
             required
-            type="number"
-            name='quantity'
+            type="text"
+            name='short'
             className='w-1/5'
             rows={4}
           />
@@ -176,40 +177,22 @@ const UploadBook = () => {
         <div>
           <div className="mb-2 block">
             <Label
-              htmlFor="rating"
-              value="rating"
+              htmlFor="long"
+              value="long"
             />
           </div>
           <Textarea
-            id='rating'
-            placeholder="rating"
+            id='long'
+            placeholder="long"
             required
-            type="number"
-            name='rating'
+            type="text"
+            name='long'
             className='w-1/5'
             rows={4}
           />
         </div>
 
-         {/* full width div for book description */}
-         <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="desc"
-              value="desc"
-            />
-          </div>
-          <Textarea
-            id="desc"
-            placeholder="Book Description"
-            required
-            type="text"
-            name='desc'
-            className='w-full'
-            rows={4}
-          />
-        </div>
-
+        
 
        
 
