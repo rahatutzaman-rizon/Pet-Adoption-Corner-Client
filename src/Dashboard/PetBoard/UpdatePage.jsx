@@ -1,67 +1,70 @@
+
 import  { useState } from 'react'
 
 import { Button, Label, Select, TextInput, Textarea } from 'flowbite-react';
 import Swal from 'sweetalert2';
-
-const UploadBook = () => {
-  const Categories = [
-    "fish",
-    "bird",
-    "dog",
-    "cat"
-
-  ];
-
-
-  const [selectedBookCategory, setSelectedBookCategory] = useState(
-    Categories[0]
-  );
-
-  const handleChangeSelectedValue = (event) => {
-    console.log(event.target.value);
-    setSelectedBookCategory(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-
-    const name = form.name.value;
-    const age=form.age.value;
-    const location=form.location.value;
-    const short=form.short.value;
-    const long=form.long.value;
- 
-    const category = form.category.value;
- 
-  
-    const bookObj = {
-      name,
-      age,location,category,short,long
-    };
-    // console.log(dataObj)
-    fetch("https://library-management-server-phi.vercel.app/upload-book", {
-      method: "POST",
-
-      headers: {
-        "Content-type": "application/json",
-      },
-
-      body: JSON.stringify(bookObj),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        Swal.fire("Book updated successfully!!!!");
+import { useLoaderData, useParams } from 'react-router-dom';
+const UpdatePage = () => {
+    const { id } = useParams();
+const datas=useLoaderData();
+const {name,age,location,category,short,long}=datas;
+    const Categories = [
+        "fish",
+        "bird",
+        "dog",
+        "cat"
+    
+      ];
+    
+    
+      const [selectedBookCategory, setSelectedBookCategory] = useState(
+        Categories[0]
+      );
+    
+      const handleChangeSelectedValue = (event) => {
+        console.log(event.target.value);
+        setSelectedBookCategory(event.target.value);
+      };
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+    
+        const name = form.name.value;
+        const age=form.age.value;
+        const location=form.location.value;
+        const short=form.short.value;
+        const long=form.long.value;
+     
+        const category = form.category.value;
+     
+      
+        const bookObj = {
+          name,
+          age,location,category,short,long
+        };
         
-        form.reset();
-      });
-  };
-
-
-  return (
-    <div className='px-4 my-12'>
-      <h2 className='mb-8 text-3xl font-bold'>Upload A Pet</h2>
+        fetch(`http://localhost:5000/add-pet/${id}`, {
+  method: "PATCH",
+  headers: {
+    "Content-type": "application/json",
+  },
+  body: JSON.stringify(bookObj),
+})
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+    Swal.fire("Book updated successfully!!!!");
+    form.reset();
+  });
+       
+         
+      };
+    
+    return (
+        <div>
+          <div className='px-4 my-12'>
+      <h2 className='mb-8 text-3xl font-bold'>Update A Pet!</h2>
       <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={handleSubmit}>
 
         {/* first row */}
@@ -77,7 +80,7 @@ const UploadBook = () => {
             </div>
             <TextInput
               id="name"
-              placeholder="Book Name"
+              placeholder={name}
               required
               type="text"
               name='name'
@@ -90,7 +93,7 @@ const UploadBook = () => {
             <div className="mb-2 block">
               <Label
                 htmlFor="age"
-                value="age"
+                value={age}
               />
             </div>
             <TextInput
@@ -109,7 +112,7 @@ const UploadBook = () => {
             <div className="mb-2 block">
               <Label
                 htmlFor="location"
-                value="location"
+                value={location}
               />
             </div>
             <TextInput
@@ -160,7 +163,7 @@ const UploadBook = () => {
           <div className="mb-2 block">
             <Label
               htmlFor="short"
-              value="short"
+              value={short}
             />
           </div>
           <Textarea
@@ -178,7 +181,7 @@ const UploadBook = () => {
           <div className="mb-2 block">
             <Label
               htmlFor="long"
-              value="long"
+              value={long}
             />
           </div>
           <Textarea
@@ -199,12 +202,14 @@ const UploadBook = () => {
         {/* Submit btn */}
         <Button className="bg-red-300 mt-5" type="submit" 
         >
-         Add Book
+        Update a Book
         </Button>
 
       </form>
     </div>
-  )
-}
+            
+        </div>
+    );
+};
 
-export default UploadBook
+export default UpdatePage;

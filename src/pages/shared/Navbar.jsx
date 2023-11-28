@@ -69,13 +69,15 @@ console.log(user)
         { link: "PetListing", path: "/petlisting" },
  
         { link: "Login", path: "/login" },
+        {link: "Dashboard", path: "/admin/dashboard"},
+
     ];
     return (
         <header className="w-full bg-transparent fixed top-0 left-0 right-0 transition-all ease-in duration-300">
-            <nav className={`py-4 lg:px-4 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-teal-300" : ""
+            <nav className={`py-4 lg:px-4 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-cyan-300" : " "
                 }`}>
-                <div className="flex justify-between items-center text-base gap-2">
-                    <Link to="/" className="text-3xl font-bold text-purple-500  flex items-center "><FaDove className="inline-block"/>Pet Corner</Link>
+                <div className="flex justify-between items-center text-black gap-2">
+                    <Link to="/" className="text-3xl font-bold text-pink-700  flex items-center "><FaDove className="inline-block"/>Pet Corner</Link>
 
                     <button className="btn btn-square btn-ghost">
           <label className="swap swap-rotate w-12 h-12">
@@ -98,7 +100,8 @@ console.log(user)
                                 {link}
                             </Link>)
                         }
-                    </ul>
+                    </ul> 
+                    
                     { 
         user &&(
           <button onClick={handlelogout} className="btn btn-success">logout</button>

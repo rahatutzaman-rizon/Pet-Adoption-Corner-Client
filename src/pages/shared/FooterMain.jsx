@@ -4,12 +4,12 @@
 const FooterMain = () => {
   return (
     <div>
-            <footer className="footer footer-center p-10 bg-teal-400 text-base-content rounded">
+            <footer className="footer footer-center p-10 bg-cyan-300 h-54s text-base-content rounded">
   <nav className="grid grid-flow-col gap-4">
     <a className="link link-hover">About us</a> 
     <a className="link link-hover">Contact</a> 
     <a className="link link-hover">Jobs</a> 
-    <a className="link link-hover">Press kit</a>
+    <a className="link link-hover">Petlist</a>
   </nav> 
   <nav>
     <div className="grid grid-flow-col gap-4">
@@ -19,9 +19,9 @@ const FooterMain = () => {
     </div>
   </nav> 
   <aside>
-    <p>Copyright © 2023 - All right reserved by technovative store 
+    <p className="text-xl">Copyright © 2023 - All right reserved by petcorner
     </p>
-    <p>email: bookbazar23@gmail.com</p>
+    <p> Organization Email: petcorner23@gmail.com</p>
   </aside>
 </footer>
         </div>

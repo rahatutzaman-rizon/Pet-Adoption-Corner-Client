@@ -9,7 +9,7 @@ import SignleBook from "../pages/shared/SignleBook";
 
 import Dashboard from "../Dashboard/Dashboard";
 import ManageBooks from "../Dashboard/ManageBooks";
-import EditBooks from "../Dashboard/EditBooks";
+//import EditBooks from "../Dashboard/EditBooks";
 import Signup from "../pages/Signup";
 import Logout from "../pages/Logout";
 import ErrorPage from "../pages/shared/ErrorPage";
@@ -17,17 +17,20 @@ import ErrorPage from "../pages/shared/ErrorPage";
 import Specific from "../pages/Home/Specific/Specific";
 import Moredetails from "../pages/Home/Specific/Moredetails";
 import BorrowBook from "../pages/Home/Specific/BorrowBook";
-import MyDonations from "../Dashboard/MyDonations";
+
 import PetListing from "../Pet/PetListing";
 import AddPet from "../Dashboard/AddPet";
 import MyPet from "../Dashboard/PetBoard/MyPet";
 import AdoptionRequest from "../Dashboard/AdoptionRequest";
-import MyDonationsCampign from "../Dashboard/MyDonationsCampign";
+
 import CreateDonationsCampign from "../Dashboard/CreateDonationsCampign";
 import MyDonation from "../Dashboard/PetBoard/MyDonation";
 import AdmitPet from "../Pet/AdmitPet";
 import DonationCampign from "../Pet/DonationCampign";
 import Moredetail2 from "../pages/Home/Specific/Moredetail2";
+
+import UpdatePage from "../Dashboard/PetBoard/UpdatePage";
+import MyDonationCampaign from "../Dashboard/PetBoard/MyDonationCampaign";
 
 
 const router = createBrowserRouter([
@@ -75,6 +78,8 @@ const router = createBrowserRouter([
         element:<DonationCampign></DonationCampign>,
         loader:()=>fetch('http://localhost:5000/pet-listing'),
       },
+     
+
     
     ]
   },
@@ -83,7 +88,9 @@ const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { path: "/admin/dashboard", element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>},
-      { path: "/admin/dashboard/mydonation", element: <MyDonations></MyDonations> },
+      { path: "/admin/dashboard/mydonation", element: <MyDonation></MyDonation> ,
+      loader:()=> fetch('http://localhost:5000/donation-detail'),
+    },
       { path: "/admin/dashboard/manage", element: <ManageBooks /> },
       
       { path: "/admin/dashboard/add-pet", element: <AddPet></AddPet> },
@@ -91,13 +98,17 @@ const router = createBrowserRouter([
       { path: "/admin/dashboard/my-pet", element: <MyPet></MyPet>,
       loader:()=> fetch('http://localhost:5000/add-pet'), },
       { path: "/admin/dashboard/adoption", element: <AdoptionRequest></AdoptionRequest>  },
-      { path: "/admin/dashboard/my-donation-campign", element: <MyDonationsCampign></MyDonationsCampign> },
-      { path: "/admin/dashboard/create-donation", element:<CreateDonationsCampign></CreateDonationsCampign> },
-      { path: "/admin/dashboard/my-donation", element: <MyDonation></MyDonation> },
-
-      { path: "/admin/dashboard/edit-books/:id", element: <EditBooks />,
-      loader: ({ params }) => fetch(`https://library-management-server-phi.vercel.app/book/${params.id}`)
+      { path: "/admin/dashboard/donation-campaign", element: <MyDonationCampaign></MyDonationCampaign>,
+      loader:()=> fetch('http://localhost:5000/donation-campaign'),
     },
+      { path: "/admin/dashboard/create-donation-campaign", element:<CreateDonationsCampign></CreateDonationsCampign> },
+     
+       
+
+      
+    { path: "/admin/dashboard/add-pet/:id", element: <UpdatePage></UpdatePage>,
+    loader: ({ params }) => fetch(`http://localhost:5000/update-pet/${params.id}`)
+  },
     
     ],
   },

@@ -19,11 +19,11 @@ const Moredetail2 = () => {
       setShowModal(false);
     };
   
-    const item=useLoaderData();
-      console.log(item);
+    const item2=useLoaderData();
+      console.log(item2);
      
      
-     const {name,picture}=item;
+     const {name,picture,amount}=item2;
   
      const handleUpdateProduct = event => {
       event.preventDefault();
@@ -32,17 +32,17 @@ const Moredetail2 = () => {
   
       const name = form.name.value;
       const petname = form.petname.value;
-      const phone = form.phone.value;
+      const bkash = form.bkash.value;
       const email = form.email.value;
-      const address = form.address.value;
-      
-    const updateproductitem = { name,email,phone,address,petname }
+      const transaction = form.transaction.value;
+      const amount = form.amount.value;
+    const updateproductitem = { name,email,transaction,bkash,amount,petname }
     
   
       console.log(updateproductitem);
   
       //send data to the server
-      fetch("http://localhost:5000/adopt", {
+      fetch("http://localhost:5000/donation-detail", {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -55,7 +55,7 @@ const Moredetail2 = () => {
               if(data.insertedId){
                   Swal.fire({
                       title: 'Success!',
-                      text: 'Pet adopt Successfully',
+                      text: 'transcation Successfully',
                       icon: 'success',
                       confirmButtonText: 'Cool'
                     })
@@ -73,8 +73,9 @@ const Moredetail2 = () => {
      
       <div className="px-6 py-4">
       <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-md shadow-md">
-      <img src={picture} alt={name} className="w-full h-54 object-cover mb-4 rounded-md" />
+      <img src={picture} alt={name} className="w-full h-48 object-cover mb-4 rounded-md" />
       <h2 className="text-lg font-semibold mb-2 text-white">{name}</h2>
+      <h2 className="text-lg font-semibold mb-2 text-white"> Amount {amount}</h2>
       <p className="text-gray-200 mb-2"> Bkash Number: 016776263</p>
       <p className="text-gray-200 mb-2">Donation details: Donations play a crucial role in addressing various societal and global challenges, providing support to individuals, communities, and organizations in need. The importance of donations extends far beyond the act of giving money or resources; it represents a powerful force for positive change</p>
       
@@ -143,35 +144,48 @@ const Moredetail2 = () => {
         </label>
       </div>
 
-      <div className="">
-        <label className="label">
-          <span className="label-text">Address</span>
-        </label>
-        <label className="input-group">
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            className="input input-bordered w-full"
-          />
-        </label>
-      </div>
-
       <div className="mb-2">
         <label className="label">
-          <span className="label-text">Phone Number</span>
+          <span className="label-text">Transaction Id</span>
         </label>
         <label className="input-group">
           <input
             type="number"
-            name="phone"
-            placeholder="Phone Number"
+            name="transaction"
+            placeholder="transaction id"
             className="input input-bordered w-full"
           />
         </label>
       </div>
 
+
       <div className="">
+        <label className="label">
+          <span className="label-text">My bkash Number</span>
+        </label>
+        <label className="input-group">
+          <input
+            type="number"
+            name="bkash"
+            placeholder="My bkash Number"
+            className="input input-bordered w-full"
+          />
+        </label>
+      </div>
+      <div className="">
+        <label className="label">
+          <span className="label-text">Amount</span>
+        </label>
+        <label className="input-group">
+          <input
+            type="number"
+            name="amount"
+            placeholder="Amount"
+            className="input input-bordered w-full"
+          />
+        </label>
+      </div>
+      <div className="mt-2">
         
           <input
             type="submit"

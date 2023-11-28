@@ -6,10 +6,10 @@ const CategoryCard = ({category}) => {
     return (
         <div>
         <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
-          <Link to={`/specific/${category}`}>
+          <Link to="/petlisting">
           
   
-  <div className="px-6 py-4">
+  <div className="px-6 py-4 bg-cyan-300">
   <div>
     <img src="https://i.ibb.co/61Dp6C8/images.jpg" alt="" />
   </div>

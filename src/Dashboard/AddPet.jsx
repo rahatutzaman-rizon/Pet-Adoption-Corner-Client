@@ -76,8 +76,8 @@ const AddPet = () => {
 
     
     return (
-        <div className='px-4 my-12 bg-blue-300'>
-        <h2 className='mb-8 text-3xl font-bold'>Add a book</h2>
+        <div className='px-4 my-12 bg-cyan-300 mt-24'>
+        <h2 className='mb-8 text-3xl font-bold'>Add a Pet</h2>
         <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={handleSubmit}>
   
           {/* first row */}
@@ -262,7 +262,7 @@ const AddPet = () => {
           {/* Submit btn */}
           <Button className="bg-red-300 mt-5" type="submit" 
           >
-           Add Book
+           Add Pet
           </Button>
   
         </form>

@@ -5,15 +5,18 @@ import img from '../../src/assets/awardbooks.png'
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthProvider';
+import Navbar from '../pages/shared/Navbar';
 
 const SideBar = () => {
   const {user} = useContext(AuthContext)
+
   return (
     <div className=''>
-      <Sidebar aria-label="Sidebar with content separator example" className='hidden md:block'>
+    <Navbar className=""></Navbar>
+      <Sidebar aria-label="Sidebar with content separator example" className='hidden md:block mt-20 '>
         <Sidebar.Logo
           href="/"
-          img={ img}
+          img={img}
           className='w-10 h-10 rounded-full'
           imgAlt="Flowbite logo"
         >
@@ -35,16 +38,35 @@ const SideBar = () => {
               icon={HiOutlineCloudUpload}
             >
               <p>
-                My Donations
+                My Donation
               </p>
             </Sidebar.Item>
 
             <Sidebar.Item
-              href="/admin/dashboard/manage"
+              href="/admin/dashboard/donation-campaign"
+              icon={HiOutlineCloudUpload}
+            >
+              <p>
+                My Donations Campign
+              </p>
+            </Sidebar.Item>
+
+            <Sidebar.Item
+              href="/admin/dashboard/create-donation-campaign"
               icon={HiInbox}
             >
               <p>
-                ManageBooks
+              Create Donate Camp
+              </p>
+            </Sidebar.Item>
+
+
+            <Sidebar.Item
+              href="/admin/dashboard/my-pet"
+              icon={HiInbox}
+            >
+              <p>
+                My Pet
               </p>
             </Sidebar.Item>
             
@@ -56,7 +78,55 @@ const SideBar = () => {
                Add pet
               </p>
             </Sidebar.Item>
+
+
+            <Sidebar.Item
+              href="/admin/dashboard/add-pet"
+              icon={HiInbox}
+            >
+              <p>
+               Adoption Request
+              </p>
+            </Sidebar.Item>
             
+            
+            <Sidebar.Item
+              href="/admin/dashboard/add-pet"
+              icon={HiInbox}
+            >
+              <p>
+            Edit Donation
+              </p>
+            </Sidebar.Item>
+          
+
+            <Sidebar.Item
+              href="/admin/dashboard/add-pet"
+              icon={HiInbox}
+            >
+              <p>
+             Users
+              </p>
+            </Sidebar.Item>
+          
+            <Sidebar.Item
+              href="/admin/dashboard/add-pet"
+              icon={HiInbox}
+            >
+              <p>
+             All Donations
+              </p>
+            </Sidebar.Item>
+
+            <Sidebar.Item
+              href="/admin/dashboard/add-pet"
+              icon={HiInbox}
+            >
+              <p>
+              All Pets
+              </p>
+            </Sidebar.Item>
+      
            
             <Sidebar.Item
               href="/logout"

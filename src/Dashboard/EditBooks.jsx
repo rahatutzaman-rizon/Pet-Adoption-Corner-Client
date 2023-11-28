@@ -47,7 +47,7 @@ const EditBooks = () => {
     // console.log(bookObj)
 
     // update the book object
-    fetch(`https://library-management-server-phi.vercel.app/book/${id}`, {
+    fetch(`http://localhost:5000/update-pet/${id}`, {
       method: "PATCH",
 
       headers: {
@@ -64,7 +64,7 @@ const EditBooks = () => {
   
     return (
       <div className='px-4 my-12'>
-      <h2 className='mb-8 text-3xl font-bold'>Upload A Book!</h2>
+      <h2 className='mb-8 text-3xl font-bold'>Update Pet</h2>
       <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={handleUpdate}>
 
         {/* first row */}
