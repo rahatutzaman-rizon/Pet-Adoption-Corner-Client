@@ -3,7 +3,7 @@
 const Users = () => {
     return (
         <div>
-            <h2>this is users</h2>
+            
         </div>
     );
 };

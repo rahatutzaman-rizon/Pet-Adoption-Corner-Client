@@ -3,12 +3,39 @@ import { Sidebar } from 'flowbite-react';
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiSupport, HiTable, HiUser, HiViewBoards, HiOutlineCloudUpload } from 'react-icons/hi';
 import img from '../../src/assets/awardbooks.png'
 
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthProvider';
+import { useContext, useEffect, useState } from 'react';
+
 import Navbar from '../pages/shared/Navbar';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const SideBar = () => {
-  const {user} = useContext(AuthContext)
+
+  const [role,setRole]=useState("");
+ const{user}=useContext(AuthContext)
+  const getUsers= async()=>{
+const res=await axios.get("http://localhost:5000/users")
+return res;
+  }
+  
+
+  const {data,isLoading}=useQuery({
+    queryKey:["users"],
+    queryFn:getUsers
+  })
+
+  useEffect(()=>{
+ const seeUsers=data?.data?.filter(check=>check.email==user?.email)
+ const userType=seeUsers?.map(items=>setRole(items.role))
+
+  },[data,user])
+
+  if(isLoading){
+    return <h2>loading.....</h2>
+  }
+
+  console.log(user?.email,role)
 
   return (
     <div className=''>
@@ -81,7 +108,7 @@ const SideBar = () => {
 
 
             <Sidebar.Item
-              href="/admin/dashboard/add-pet"
+              href="/admin/dashboard/adoption"
               icon={HiInbox}
             >
               <p>
@@ -90,19 +117,12 @@ const SideBar = () => {
             </Sidebar.Item>
             
             
-            <Sidebar.Item
-              href="/admin/dashboard/add-pet"
-              icon={HiInbox}
-            >
-              <p>
-            Edit Donation
-              </p>
-            </Sidebar.Item>
-          
+        {
 
-            <Sidebar.Item
-              href="/admin/dashboard/add-pet"
-              icon={HiInbox}
+            role==="admin" && <>
+          <Sidebar.Item
+              href="/admin/dashboard/users"
+              icon={HiUser}
             >
               <p>
              Users
@@ -110,8 +130,8 @@ const SideBar = () => {
             </Sidebar.Item>
           
             <Sidebar.Item
-              href="/admin/dashboard/add-pet"
-              icon={HiInbox}
+              href="/admin/dashboard/alldonations"
+              icon={ HiSupport}
             >
               <p>
              All Donations
@@ -119,13 +139,17 @@ const SideBar = () => {
             </Sidebar.Item>
 
             <Sidebar.Item
-              href="/admin/dashboard/add-pet"
-              icon={HiInbox}
+              href="/admin/dashboard/allpets"
+              icon={ HiSupport}
             >
               <p>
               All Pets
               </p>
             </Sidebar.Item>
+          </>
+        }
+
+         
       
            
             <Sidebar.Item

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import googleLogo from '../assets/google-logo.svg'
 import fbLogo from '../assets/facebook-log.svg'
+import axios from 'axios';
 
 
 const Signup = () => {
@@ -21,6 +22,8 @@ const Signup = () => {
     const handleRegister = () => {
         signUpWithGmail().then((result) => {
             const user = result.user;
+
+            
             navigate(from, { replace: true });
         }).catch((error) => console.log(error))
     }
@@ -31,10 +34,25 @@ const Signup = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        const name= form.name.value;
         console.log(email, password);
         createUser(email, password).then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            console.log(user)
+            if(userCredential.user){
+                axios.post("http://localhost:5000/users",{
+                    name:name,
+                    email:email,
+                    role:"user"
+
+                })
+                .then(res=>{
+                    console.log(res.data)
+
+                })
+                
+            }
             // ...
           })
           .catch((error) => {
@@ -60,11 +78,16 @@ const Signup = () => {
                         <div className="divide-y divide-gray-200">
                             <form onSubmit={handleSignup} className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                 <div className="relative">
+                                    <input id="name" name="name" type="text" className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" required />
+                                </div>
+                                <div className="relative">
                                     <input id="email" name="email" type="text" className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" required />
                                 </div>
                                 <div className="relative">
                                     <input id="password" name="password" type="password" className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" required />
                                 </div>
+
+                               
                                 <div>
                                     <p className='text-base'>If you have an account. Please <Link to='/login' className='underline text-blue-600'>Login Now</Link> here</p>
                                 </div>

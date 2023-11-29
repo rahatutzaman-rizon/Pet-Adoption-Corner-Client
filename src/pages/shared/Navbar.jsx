@@ -104,11 +104,13 @@ console.log(user)
                     
                     { 
         user &&(
-          <button onClick={handlelogout} className="btn btn-success">logout</button>
+          <button onClick={handlelogout} className="btn btn-info rounded-full">logout</button>
         )
       }
-  
-  <p>{user?.email}</p>
+      <Link className="btn btn-info rounded-full h-2"> {user?.email}</Link>
+      <Link to="/admin/dashboard">
+      <img className="rounded-full h-8" src={user?.photoURL} alt="" />
+      </Link>
 
  
         
