@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 
 const MyDonationCampaign = () => {
      const campaign=useLoaderData();
-     console.log(campaign)
+  
     return (
         <div>
              <div>
@@ -23,16 +23,26 @@ const MyDonationCampaign = () => {
             <tr key={idx}>
               
               <td className="py-2 px-4 border-b">{campaign.name}</td>
-              <td className="py-2 px-4 border-b">${campaign.total}</td>
+              <td className="py-2 px-4 border-b">{campaign.total}</td>
               <td className="py-2 px-4 border-b">{campaign.max}</td>
               <td className="py-2 px-4 border-b">{campaign.date}</td>
               <td className="py-2 px-4 border-b">
-                <button
-                  onClick={() => handleRefund(donation.id)}
-                  className="bg-red-500 text-white py-1 px-2 rounded"
-                >
-                  Ask for Refund 1
-                </button>
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+<button className="btn" onClick={()=>document.getElementById('my_modal_5').showModal()}>View details</button>
+<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg"></h3>
+    <h3>  Donar Name :{campaign.donar}</h3>
+       <h3> Donate amount :{campaign.give} </h3>
+        
+    <div className="modal-action">
+      <form method="dialog">
+  
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
               </td>
             </tr>
           ))}

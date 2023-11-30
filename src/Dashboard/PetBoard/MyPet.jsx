@@ -1,12 +1,14 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 import { Table } from 'flowbite-react'
 import  { useEffect, useState } from 'react'
 import { Pagination } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2";
 const MyPet = () => {
   const mypet=useLoaderData();
-  const [allBooks, setAllBooks] = useState([]);
+  const navigate=useNavigate()
+  const [allBooks, setAllBooks] = useState(mypet);
   useEffect(() => {
       fetch(`http://localhost:5000/add-pet`)
           .then((res) => res.json())
@@ -17,18 +19,31 @@ const MyPet = () => {
   }, []);
 
   // delete a books
-  const handleDelete = (id) => {
-      // console.log(id)
-      fetch(`https://library-management-server-phi.vercel.app/book/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          // setAllBooks(data);
-        });
-    };
+  const  handledelete =_id=>{
+   
+    fetch(`http://localhost:5000/add-pet/${_id}`, {
+      method: "DELETE",
+  })
+.then(res=>res.json())
+.then(data =>{
+console.log(data);
+if(data.deletedCount>0){
+  Swal.fire({
+    title: 'Success!',
+    text: 'Deleted Successfully',
+    icon: 'success',
+    confirmButtonText: 'Cool'
 
+  })
+
+  const remaining=allBooks.filter(user => user._id !==_id);
+  setAllBooks(remaining);
+
+  navigate('/admin/dashboard/my-pet')
+}
+})
+
+}
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +51,7 @@ const MyPet = () => {
 
     return (
       <div className='px-4 my-12 mt-12'>
-      <h2 className='mb-8 text-3xl font-bold'>Manager My Pet</h2>
+      <h2 className='mb-8 text-3xl font-bold'>Managememnt My Pet</h2>
 
       {/* table */}
 
@@ -74,7 +89,7 @@ const MyPet = () => {
                           >
                               Edit
                           </Link>
-                          <button className='bg-teal-600 px-4 py-1 font-semibold text-white rounded-sm hover:bg-sky-600 ' onClick={() => handleDelete(book._id)}>Delete</button>
+                          <button className='bg-teal-600 px-4 py-1 font-semibold text-white rounded-sm hover:bg-sky-600 ' onClick={() => handledelete(pet._id)}>Delete</button>
 
                       </Table.Cell>
                       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">

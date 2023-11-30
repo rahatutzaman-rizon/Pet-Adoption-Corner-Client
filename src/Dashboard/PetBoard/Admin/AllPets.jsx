@@ -1,8 +1,40 @@
-import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AllPets = () => {
 const  allpets=useLoaderData();
 
+
+const navigate=useNavigate();
+ 
+    
+const [users,setUsers]=useState(allpets);
+
+const  handledelete =_id=>{
+  
+  fetch(`http://localhost:5000/pet-listing/${_id}`, {
+    method: "DELETE",
+})
+.then(res=>res.json())
+.then(data =>{
+console.log(data);
+if(data.deletedCount>0){
+Swal.fire({
+  title: 'Success!',
+  text: 'Users pet delete Successfully',
+  icon: 'success',
+  confirmButtonText: 'Cool'
+
+})
+
+const remaining=users.filter(user => user._id !==_id);
+setUsers(remaining);
+
+navigate('/admin/dashboard/allpets')
+}
+})
+}
 
     return (
         <div>
@@ -31,10 +63,10 @@ const  allpets=useLoaderData();
         
          <td className="py-2 px-4 border-b">
            <button
-             //onClick={() => handleRefund(donation.id)}
-             className="bg-red-500 text-white py-1 px-2 rounded"
+             onClick={() => handledelete(campaign._id)}
+             className="bg-teal-500 text-white py-1 px-2 rounded"
            >
-             Ask for Refund 1
+          Delete
            </button>
          </td>
        </tr>

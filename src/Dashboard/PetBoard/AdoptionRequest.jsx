@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import AdoptionCard from "./AdoptionCard";
+
 import Swal from "sweetalert2";
 import { useState } from "react";
 

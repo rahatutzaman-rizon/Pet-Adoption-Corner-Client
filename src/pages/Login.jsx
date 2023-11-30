@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import googleLogo from '../assets/google-logo.svg'
@@ -47,7 +47,7 @@ export default function Login() {
 
     return (
 
-        <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+        <div className="min-h-screen bg-cyan-300 py-6 flex flex-col justify-center sm:py-12">
             <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                 <div
                     className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
@@ -57,7 +57,7 @@ export default function Login() {
                         <div>
                             <h1 className="text-3xl font-semibold">Please Login to Dashborad</h1>
                         </div>
-                        <div className="divide-y divide-gray-200">
+                        <div className="divide-y divide-red-200">
                             <form onSubmit={handleLogin} className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                 <div className="relative">
                                     <input id="email" name="email" type="text" className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" required />
@@ -67,7 +67,7 @@ export default function Login() {
                                 </div>
                                 <div>
                                     <p>{ErrorMessage ? <span className='text-blue-500 text-sm'>Email or Username is not valid!</span> : ''}</p>
-                                    <p className='text-base mt-1'>If you haven't an account. Please create here <Link to='/create-user' className='underline text-blue-600'>Sign Up</Link></p>
+                                    <p className='text-base mt-1'>If you have not san account. Please create here <Link to='/create-user' className='underline text-blue-600'>Sign Up</Link></p>
 
                                 </div>
                                 <div className="relative">

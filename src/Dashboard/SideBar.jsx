@@ -40,7 +40,7 @@ return res;
   return (
     <div className=''>
     <Navbar className=""></Navbar>
-      <Sidebar aria-label="Sidebar with content separator example" className='hidden md:block mt-20 '>
+      <Sidebar aria-label="Sidebar with content separator example" className='md:hidden md:block mt-20 '>
         <Sidebar.Logo
           href="/"
           img={img}

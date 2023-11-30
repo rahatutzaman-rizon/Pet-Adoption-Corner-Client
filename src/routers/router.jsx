@@ -104,12 +104,13 @@ const router = createBrowserRouter([
   },
 
   { path: "/admin/dashboard/users", element: <Users></Users>,
+  loader: () => fetch("http://localhost:5000/users ")
   
 }, 
  { path: "/admin/dashboard/alldonations", element: <AllDonations></AllDonations>,
 loader: () => fetch("http://localhost:5000/adopt")
 },  { path: "/admin/dashboard/allpets", element: <AllPets></AllPets>,
-loader: () => fetch("http://localhost:5000/pet-listing")
+loader: () => fetch("http://localhost:5000/pet-listing"),
 },
     
     ],
