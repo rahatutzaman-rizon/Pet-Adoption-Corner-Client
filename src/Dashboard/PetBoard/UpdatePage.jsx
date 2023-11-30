@@ -44,7 +44,7 @@ const {name,age,location,category,short,long}=datas;
           age,location,category,short,long
         };
         
-        fetch(`http://localhost:5000/add-pet/${id}`, {
+        fetch(`https://assignment-12-server-two-smoky.vercel.app/add-pet/${id}`, {
   method: "PATCH",
   headers: {
     "Content-type": "application/json",

@@ -15,7 +15,7 @@ const SideBar = () => {
   const [role,setRole]=useState("");
  const{user}=useContext(AuthContext)
   const getUsers= async()=>{
-const res=await axios.get("http://localhost:5000/users")
+const res=await axios.get("https://assignment-12-server-two-smoky.vercel.app/users")
 return res;
   }
   

@@ -42,7 +42,7 @@ const Moredetails = () => {
     console.log(updateproductitem);
 
     //send data to the server
-    fetch("http://localhost:5000/adopt", {
+    fetch("https://assignment-12-server-two-smoky.vercel.app/adopt", {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

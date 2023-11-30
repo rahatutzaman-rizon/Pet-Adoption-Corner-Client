@@ -34,7 +34,7 @@ const CreateDonationsCampign = () => {
         short,long,date,max,total,user,email
         };
         // console.log(dataObj)
-        fetch("http://localhost:5000/donation-campaign", {
+        fetch("https://assignment-12-server-two-smoky.vercel.app/donation-campaign", {
           method: "POST",
     
           headers: {

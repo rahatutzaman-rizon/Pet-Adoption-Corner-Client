@@ -49,7 +49,7 @@ const AddPet = () => {
           age,location,category,short,long,date,image
         };
         // console.log(dataObj)
-        fetch("http://localhost:5000/add-pet", {
+        fetch("https://assignment-12-server-two-smoky.vercel.app/add-pet", {
           method: "POST",
     
           headers: {

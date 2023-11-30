@@ -13,7 +13,7 @@ const [users,setUsers]=useState(allpets);
 
 const  handledelete =_id=>{
   
-  fetch(`http://localhost:5000/pet-listing/${_id}`, {
+  fetch(`https://assignment-12-server-two-smoky.vercel.app/pet-listing/${_id}`, {
     method: "DELETE",
 })
 .then(res=>res.json())

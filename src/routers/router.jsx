@@ -46,12 +46,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader:()=>fetch('http://localhost:5000/pet-listing'),
+        loader:()=>fetch('https://assignment-12-server-two-smoky.vercel.app/pet-listing'),
       },
       {
         path: "/petlisting",
         element: <PetListing></PetListing>,
-        loader:()=>fetch('http://localhost:5000/pet-listing'),
+        loader:()=>fetch('https://assignment-12-server-two-smoky.vercel.app/pet-listing'),
 
       }
       ,
@@ -61,13 +61,13 @@ const router = createBrowserRouter([
       {
         path:"/adopt",
         element:<AdmitPet></AdmitPet>,
-        loader:()=>fetch('http://localhost:5000/adopt'),
+        loader:()=>fetch('https://assignment-12-server-two-smoky.vercel.app/adopt'),
       },
 
       {
         path:"/donation-campign",
         element:<DonationCampign></DonationCampign>,
-        loader:()=>fetch('http://localhost:5000/pet-listing'),
+        loader:()=>fetch('https://assignment-12-server-two-smoky.vercel.app/pet-listing'),
       },
      
 
@@ -80,19 +80,19 @@ const router = createBrowserRouter([
     children: [
       { path: "/admin/dashboard", element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>},
       { path: "/admin/dashboard/mydonation", element: <MyDonation></MyDonation> ,
-      loader:()=> fetch('http://localhost:5000/donation-detail'),
+      loader:()=> fetch('https://assignment-12-server-two-smoky.vercel.app/donation-detail'),
     },
       { path: "/admin/dashboard/manage", element: <ManageBooks /> },
       
       { path: "/admin/dashboard/add-pet", element: <AddPet></AddPet> },
 
       { path: "/admin/dashboard/my-pet", element: <MyPet></MyPet>,
-      loader:()=> fetch('http://localhost:5000/add-pet'), },
+      loader:()=> fetch('https://assignment-12-server-two-smoky.vercel.app/add-pet'), },
       { path: "/admin/dashboard/adoption", element: <AdoptionRequest></AdoptionRequest> ,
-      loader:()=> fetch('http://localhost:5000/pet-listing'),
+      loader:()=> fetch('https://assignment-12-server-two-smoky.vercel.app/pet-listing'),
     },
       { path: "/admin/dashboard/donation-campaign", element: <MyDonationCampaign></MyDonationCampaign>,
-      loader:()=> fetch('http://localhost:5000/donation-campaign'),
+      loader:()=> fetch('https://assignment-12-server-two-smoky.vercel.app/donation-campaign'),
     },
       { path: "/admin/dashboard/create-donation-campaign", element:<CreateDonationsCampign></CreateDonationsCampign> },
      
@@ -100,17 +100,17 @@ const router = createBrowserRouter([
 
       
     { path: "/admin/dashboard/add-pet/:id", element: <UpdatePage></UpdatePage>,
-    loader: ({ params }) => fetch(`http://localhost:5000/update-pet/${params.id}`)
+    loader: ({ params }) => fetch(`https://assignment-12-server-two-smoky.vercel.app/update-pet/${params.id}`)
   },
 
   { path: "/admin/dashboard/users", element: <Users></Users>,
-  loader: () => fetch("http://localhost:5000/users ")
+  loader: () => fetch("https://assignment-12-server-two-smoky.vercel.app/users ")
   
 }, 
  { path: "/admin/dashboard/alldonations", element: <AllDonations></AllDonations>,
-loader: () => fetch("http://localhost:5000/adopt")
+loader: () => fetch("https://assignment-12-server-two-smoky.vercel.app/adopt")
 },  { path: "/admin/dashboard/allpets", element: <AllPets></AllPets>,
-loader: () => fetch("http://localhost:5000/pet-listing"),
+loader: () => fetch("https://assignment-12-server-two-smoky.vercel.app/pet-listing"),
 },
     
     ],
@@ -119,12 +119,12 @@ loader: () => fetch("http://localhost:5000/pet-listing"),
   {
     path: "/moredetail/:id",
     element:<Moredetails></Moredetails>,
-    loader:({params})=> fetch(`http://localhost:5000/moredetail/${params.id}`)  
+    loader:({params})=> fetch(`https://assignment-12-server-two-smoky.vercel.app/moredetail/${params.id}`)  
   },
   {
     path: "/moredetail2/:id",
     element:<Moredetail2></Moredetail2>,
-    loader:({params})=> fetch(`http://localhost:5000/moredetail2/${params.id}`)  
+    loader:({params})=> fetch(`https://assignment-12-server-two-smoky.vercel.app/moredetail2/${params.id}`)  
   },
 
   {

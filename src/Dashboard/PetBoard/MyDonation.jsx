@@ -13,7 +13,7 @@ const MyDonation = () => {
 
     const  handleRefund =_id=>{
       console.log('delete',_id);
-      fetch(`http://localhost:5000/donation-detail/${_id}`, {
+      fetch(`https://assignment-12-server-two-smoky.vercel.app/donation-detail/${_id}`, {
         method: "DELETE",
     })
 .then(res=>res.json())

@@ -16,7 +16,7 @@ const AdoptionRequest = () => {
 
     const  handleAdoption =_id=>{
       console.log('delete',_id);
-      fetch(`http://localhost:5000/adoption/${_id}`, {
+      fetch(`https://assignment-12-server-two-smoky.vercel.app/adoption/${_id}`, {
         method: "DELETE",
     })
 .then(res=>res.json())
@@ -34,7 +34,7 @@ const AdoptionRequest = () => {
     const remaining=users.filter(user => user._id !==_id);
     setUsers(remaining);
 
-    navigate('admin/dashboard/adoptions')
+    navigate('/admin/dashboard/adoption')
   }
 })
     }

@@ -12,7 +12,7 @@ const [users,setUsers]=useState(alldonation);
 
 const  handledelete =_id=>{
   
-  fetch(`http://localhost:5000/adopt/${_id}`, {
+  fetch(`https://assignment-12-server-two-smoky.vercel.app/adopt/${_id}`, {
     method: "DELETE",
 })
 .then(res=>res.json())

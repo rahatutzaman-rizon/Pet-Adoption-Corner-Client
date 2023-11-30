@@ -10,7 +10,7 @@ const MyPet = () => {
   const navigate=useNavigate()
   const [allBooks, setAllBooks] = useState(mypet);
   useEffect(() => {
-      fetch(`http://localhost:5000/add-pet`)
+      fetch(`https://assignment-12-server-two-smoky.vercel.app/add-pet`)
           .then((res) => res.json())
           .then((data) => {
               // console.log(data);
@@ -21,7 +21,7 @@ const MyPet = () => {
   // delete a books
   const  handledelete =_id=>{
    
-    fetch(`http://localhost:5000/add-pet/${_id}`, {
+    fetch(`https://assignment-12-server-two-smoky.vercel.app/add-pet/${_id}`, {
       method: "DELETE",
   })
 .then(res=>res.json())

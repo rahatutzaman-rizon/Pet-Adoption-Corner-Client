@@ -15,7 +15,7 @@ const Users = () => {
 
     const  handleUser =_id=>{
       
-      fetch(`http://localhost:5000/users/${_id}`, {
+      fetch(`https://assignment-12-server-two-smoky.vercel.app/users/${_id}`, {
         method: "DELETE",
     })
 .then(res=>res.json())

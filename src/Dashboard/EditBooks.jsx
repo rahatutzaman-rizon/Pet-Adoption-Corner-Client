@@ -47,7 +47,7 @@ const EditBooks = () => {
     // console.log(bookObj)
 
     // update the book object
-    fetch(`http://localhost:5000/update-pet/${id}`, {
+    fetch(`https://assignment-12-server-two-smoky.vercel.app/update-pet/${id}`, {
       method: "PATCH",
 
       headers: {
