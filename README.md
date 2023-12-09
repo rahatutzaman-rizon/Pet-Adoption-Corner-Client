@@ -21,3 +21,11 @@
 # 6.admin can access those route user ,allpets,alldonations
 
 
+## Tech Stack
+
+**Client:** React, DaisyUi,Tanstack query, TailwindCSS,React-hook-form,firebase
+
+**Server:** Node, Express
+
+
+
